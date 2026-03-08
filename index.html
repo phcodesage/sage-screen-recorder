@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Sage Recorder</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="renderer.js"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="panel">
+        <header class="hero compact-hero">
+          <div>
+            <p class="eyebrow">Sage Recorder</p>
+            <h1>Screen Recorder</h1>
+          </div>
+          <p class="hero-copy">MP4 export with quick resolution presets.</p>
+        </header>
+
+        <section class="controls">
+          <div class="field-group">
+            <label class="field">
+              <span>Screen</span>
+              <select id="sourceSelect"></select>
+            </label>
+            <button id="refreshButton" class="secondary-button" type="button">Refresh</button>
+          </div>
+
+          <div class="field-grid">
+            <label class="field">
+              <span>Resolution</span>
+              <select id="resolutionSelect">
+                <option value="native" selected>Source</option>
+                <option value="480p">480p</option>
+                <option value="720p">720p</option>
+                <option value="1080p">1080p</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>FPS</span>
+              <select id="fpsSelect">
+                <option value="24">24</option>
+                <option value="30" selected>30</option>
+                <option value="60">60</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="button-row">
+            <button id="startButton" class="primary-button" type="button">Start recording</button>
+            <button id="stopButton" class="danger-button" type="button" disabled>Stop and save</button>
+          </div>
+        </section>
+
+        <section class="status-bar">
+          <span id="statusBadge" class="status-badge" data-tone="idle">Idle</span>
+          <span id="statusText" class="status-text">Choose a screen to begin.</span>
+          <div class="status-times">
+            <span id="currentTime" class="clock-pill">Now --:--:--</span>
+            <span id="timer" class="timer">00:00</span>
+          </div>
+        </section>
+
+        <section class="preview-card">
+          <div class="preview-meta">
+            <span>Live preview</span>
+            <span id="outputMeta">No active capture</span>
+          </div>
+          <video id="preview" autoplay muted playsinline></video>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

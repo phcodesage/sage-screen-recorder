@@ -1,0 +1,57 @@
+{
+  "name": "sage-recorder",
+  "version": "1.0.0",
+  "description": "Simple Electron desktop app for recording your screen with preset resolutions and MP4 export.",
+  "author": "Sage Recorder Contributors",
+  "license": "MIT",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "check": "node --check main.js && node --check preload.js && node --check renderer.js",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win nsis"
+  },
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "dependencies": {
+    "ffmpeg-static": "^5.3.0"
+  },
+  "build": {
+    "appId": "com.sage.recorder",
+    "productName": "Sage Recorder",
+    "directories": {
+      "output": "dist"
+    },
+    "asarUnpack": [
+      "node_modules/ffmpeg-static/**/*"
+    ],
+    "files": [
+      "index.html",
+      "main.js",
+      "preload.js",
+      "renderer.js",
+      "styles.css",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "${productName}-${version}-Setup-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
